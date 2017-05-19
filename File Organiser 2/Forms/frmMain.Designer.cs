@@ -120,13 +120,14 @@
             // moviesToolStripMenuItem
             // 
             this.moviesToolStripMenuItem.Name = "moviesToolStripMenuItem";
-            this.moviesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.moviesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.moviesToolStripMenuItem.Text = "Movies";
+            this.moviesToolStripMenuItem.Click += new System.EventHandler(this.moviesToolStripMenuItem_Click);
             // 
             // tVShowsToolStripMenuItem1
             // 
             this.tVShowsToolStripMenuItem1.Name = "tVShowsToolStripMenuItem1";
-            this.tVShowsToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.tVShowsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.tVShowsToolStripMenuItem1.Text = "TV Shows";
             // 
             // sortModeToolStripMenuItem

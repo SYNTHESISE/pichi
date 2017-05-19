@@ -274,6 +274,12 @@ namespace File_Organiser_2
         {
 
         }
+
+        private void moviesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManage manage = new frmManage();
+            manage.ShowDialog();
+        }
     }
 
 
