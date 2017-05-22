@@ -427,14 +427,66 @@ namespace File_Organiser_2
         }
 
     }
-
+    
     public class MovieComparer
     {
+        public enum COMPARE
+        {
+            TITLE,
+            YEAR,
+            RUNNING_TIME,
+            RATING,
+            RECENTLY_ADDED,
+            RECENTLY_WATCHED
+        }
+
         public class LexicographicalComparator : IComparer<MovieBean>
         {
             public int Compare(MovieBean a, MovieBean b)
             {
+                //this is the only comparator that uses a compareTo b, all the others are reversed to have the 'highest' at the top
+                //lexicographically, we want 'A' at the top, so we use a compareTo b.
                 return a.getTitle().CompareTo(b.getTitle());
+            }
+        }
+
+        public class YearComparer : IComparer<MovieBean>
+        {
+            public int Compare(MovieBean a, MovieBean b)
+            {
+                return b.releaseDate.CompareTo(a.releaseDate);
+            }
+        }
+
+        public class RunningTimeComparer : IComparer<MovieBean>
+        {
+            public int Compare(MovieBean a, MovieBean b)
+            {
+                return b.runtime.CompareTo(a.runtime);
+            }
+        }
+
+        public class RatingComparer : IComparer<MovieBean>
+        {
+            public int Compare(MovieBean a, MovieBean b)
+            {
+                return b.voteAverage.CompareTo(a.voteAverage);
+            }
+        }
+
+        public class RecentlyAddedComparer : IComparer<MovieBean>
+        {
+            public int Compare(MovieBean a, MovieBean b)
+            {
+                return b.dateAdded.CompareTo(a.dateAdded);
+            }
+        }
+
+        public class RecentlyWatchedComparer : IComparer<MovieBean>
+        {
+            public int Compare(MovieBean a, MovieBean b)
+            {
+                return b.watchedDates.Last().CompareTo(a.watchedDates.Last());
             }
         }
     }

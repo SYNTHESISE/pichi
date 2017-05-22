@@ -48,6 +48,14 @@
             this.playMovieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMovieCount = new System.Windows.Forms.Label();
+            this.titleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ratingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runningTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recentlyWatchedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recentlyAddedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblSortMode = new System.Windows.Forms.Label();
+            this.lblFilterApplied = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +66,7 @@
             this.lstAllMovies.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lstAllMovies.Location = new System.Drawing.Point(12, 67);
             this.lstAllMovies.Name = "lstAllMovies";
-            this.lstAllMovies.Size = new System.Drawing.Size(582, 550);
+            this.lstAllMovies.Size = new System.Drawing.Size(582, 539);
             this.lstAllMovies.TabIndex = 0;
             this.lstAllMovies.TileSize = new System.Drawing.Size(550, 23);
             this.lstAllMovies.UseCompatibleStateImageBehavior = false;
@@ -120,18 +128,25 @@
             // moviesToolStripMenuItem
             // 
             this.moviesToolStripMenuItem.Name = "moviesToolStripMenuItem";
-            this.moviesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moviesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.moviesToolStripMenuItem.Text = "Movies";
             this.moviesToolStripMenuItem.Click += new System.EventHandler(this.moviesToolStripMenuItem_Click);
             // 
             // tVShowsToolStripMenuItem1
             // 
             this.tVShowsToolStripMenuItem1.Name = "tVShowsToolStripMenuItem1";
-            this.tVShowsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.tVShowsToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
             this.tVShowsToolStripMenuItem1.Text = "TV Shows";
             // 
             // sortModeToolStripMenuItem
             // 
+            this.sortModeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.titleToolStripMenuItem,
+            this.ratingToolStripMenuItem,
+            this.yearToolStripMenuItem,
+            this.runningTimeToolStripMenuItem,
+            this.recentlyWatchedToolStripMenuItem,
+            this.recentlyAddedToolStripMenuItem});
             this.sortModeToolStripMenuItem.Name = "sortModeToolStripMenuItem";
             this.sortModeToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.sortModeToolStripMenuItem.Text = "Sort Mode";
@@ -218,12 +233,75 @@
             this.lblMovieCount.TabIndex = 6;
             this.lblMovieCount.Text = "0 Movies";
             // 
+            // titleToolStripMenuItem
+            // 
+            this.titleToolStripMenuItem.Name = "titleToolStripMenuItem";
+            this.titleToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.titleToolStripMenuItem.Text = "Title";
+            this.titleToolStripMenuItem.Click += new System.EventHandler(this.titleToolStripMenuItem_Click);
+            // 
+            // ratingToolStripMenuItem
+            // 
+            this.ratingToolStripMenuItem.Name = "ratingToolStripMenuItem";
+            this.ratingToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.ratingToolStripMenuItem.Text = "Rating";
+            this.ratingToolStripMenuItem.Click += new System.EventHandler(this.ratingToolStripMenuItem_Click);
+            // 
+            // yearToolStripMenuItem
+            // 
+            this.yearToolStripMenuItem.Name = "yearToolStripMenuItem";
+            this.yearToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.yearToolStripMenuItem.Text = "Year";
+            this.yearToolStripMenuItem.Click += new System.EventHandler(this.yearToolStripMenuItem_Click);
+            // 
+            // runningTimeToolStripMenuItem
+            // 
+            this.runningTimeToolStripMenuItem.Name = "runningTimeToolStripMenuItem";
+            this.runningTimeToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.runningTimeToolStripMenuItem.Text = "Running Time";
+            this.runningTimeToolStripMenuItem.Click += new System.EventHandler(this.runningTimeToolStripMenuItem_Click);
+            // 
+            // recentlyWatchedToolStripMenuItem
+            // 
+            this.recentlyWatchedToolStripMenuItem.Name = "recentlyWatchedToolStripMenuItem";
+            this.recentlyWatchedToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.recentlyWatchedToolStripMenuItem.Text = "Recently Watched";
+            this.recentlyWatchedToolStripMenuItem.Click += new System.EventHandler(this.recentlyWatchedToolStripMenuItem_Click);
+            // 
+            // recentlyAddedToolStripMenuItem
+            // 
+            this.recentlyAddedToolStripMenuItem.Name = "recentlyAddedToolStripMenuItem";
+            this.recentlyAddedToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.recentlyAddedToolStripMenuItem.Text = "Recently Added";
+            this.recentlyAddedToolStripMenuItem.Click += new System.EventHandler(this.recentlyAddedToolStripMenuItem_Click);
+            // 
+            // lblSortMode
+            // 
+            this.lblSortMode.AutoSize = true;
+            this.lblSortMode.Location = new System.Drawing.Point(9, 609);
+            this.lblSortMode.Name = "lblSortMode";
+            this.lblSortMode.Size = new System.Drawing.Size(129, 13);
+            this.lblSortMode.TabIndex = 7;
+            this.lblSortMode.Text = "sort mode: lexicographical";
+            // 
+            // lblFilterApplied
+            // 
+            this.lblFilterApplied.Location = new System.Drawing.Point(504, 609);
+            this.lblFilterApplied.Name = "lblFilterApplied";
+            this.lblFilterApplied.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblFilterApplied.Size = new System.Drawing.Size(89, 15);
+            this.lblFilterApplied.TabIndex = 8;
+            this.lblFilterApplied.Text = "no filter";
+            this.lblFilterApplied.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(606, 629);
+            this.Controls.Add(this.lblFilterApplied);
+            this.Controls.Add(this.lblSortMode);
             this.Controls.Add(this.lblMovieCount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblSearch);
@@ -266,6 +344,14 @@
         private System.Windows.Forms.ToolStripMenuItem tVShowsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem titleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ratingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yearToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem runningTimeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recentlyWatchedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recentlyAddedToolStripMenuItem;
+        private System.Windows.Forms.Label lblSortMode;
+        private System.Windows.Forms.Label lblFilterApplied;
     }
 }
 

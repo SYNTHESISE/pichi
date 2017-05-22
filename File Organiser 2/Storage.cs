@@ -19,9 +19,10 @@ namespace File_Organiser_2
         public List<String> actors = new List<string>();
         public List<String> directors = new List<string>();
 
+        public MovieComparer.COMPARE comparer;
         public int getUniqueID;
-
-        //TODO: why does this have no references? what should be using this?
+        
+        
         public void insertMovie(MovieBean oldMovie, MovieBean newMovie)
         {
             newMovie.dateAdded = oldMovie.dateAdded;
@@ -56,6 +57,7 @@ namespace File_Organiser_2
             actors = newObject.actors;
             directors = newObject.directors;
 
+            comparer = newObject.comparer;
             getUniqueID = newObject.getUniqueID;
 
             objectStreamReader.Close();

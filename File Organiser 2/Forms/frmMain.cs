@@ -10,6 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//TODO:
+//Sorting
+//File Scanning
+//TV Shows
 namespace File_Organiser_2
 {
     public partial class frmMain : Form
@@ -44,17 +48,51 @@ namespace File_Organiser_2
         {
             lstAllMovies.Items.Clear();
 
-            files.movies.Sort(new MovieComparer.LexicographicalComparator());
+            //files.movies.Sort(new MovieComparer.LexicographicalComparator());
+            switch (files.comparer)
+            {
+                case MovieComparer.COMPARE.RATING:
+                    files.movies.Sort(new MovieComparer.RatingComparer());
+                    lblSortMode.Text = "sort mode: rating";
+                    break;
+                case MovieComparer.COMPARE.RECENTLY_ADDED:
+                    files.movies.Sort(new MovieComparer.RecentlyAddedComparer());
+                    lblSortMode.Text = "sort mode: recently added";
+                    break;
+                case MovieComparer.COMPARE.RECENTLY_WATCHED:
+                    files.movies.Sort(new MovieComparer.RecentlyAddedComparer());
+                    lblSortMode.Text = "sort mode: recently watched";
+                    break;
+                case MovieComparer.COMPARE.RUNNING_TIME:
+                    files.movies.Sort(new MovieComparer.RunningTimeComparer());
+                    lblSortMode.Text = "sort mode: running time";
+                    break;
+                case MovieComparer.COMPARE.TITLE:
+                    files.movies.Sort(new MovieComparer.LexicographicalComparator());
+                    lblSortMode.Text = "sort mode: title";
+                    break;
+                case MovieComparer.COMPARE.YEAR:
+                    files.movies.Sort(new MovieComparer.YearComparer());
+                    lblSortMode.Text = "sort mode: year";
+                    break;
+                default:
+                    files.movies.Sort(new MovieComparer.LexicographicalComparator());
+                    lblSortMode.Text = "sort mode: title";
+                    break;
+            }
+
             foreach (MovieBean movie in files.movies)
             {
                 //if the file matches search string (if there is a search string)
                 if ((txtSearch.Text != "" && (listContains(movie, movie.fileName, txtSearch.Text, StringComparison.OrdinalIgnoreCase) || (movie.title != null && listContains(movie, movie.title, txtSearch.Text, StringComparison.OrdinalIgnoreCase)))) || txtSearch.Text == "")
                 {
 
+                    lblFilterApplied.Text = "no filter";
                     //now check the filtering
                     bool passedFilterChecks = true;
                     foreach(FilterItem filter in filters)
                     {
+                        lblFilterApplied.Text = "filter applied";
                         if (!filter.check(movie))
                         {
                             passedFilterChecks = false;
@@ -279,6 +317,72 @@ namespace File_Organiser_2
         {
             frmManage manage = new frmManage();
             manage.ShowDialog();
+        }
+
+        private void titleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovieBean selectedMovie = null;
+            if (lstAllMovies.SelectedItems.Count > 0)
+            {
+                selectedMovie = (MovieBean)lstAllMovies.SelectedItems[0].Tag;
+            }
+            files.comparer = MovieComparer.COMPARE.TITLE;
+            refreshMovies(selectedMovie);
+        }
+
+        private void ratingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovieBean selectedMovie = null;
+            if (lstAllMovies.SelectedItems.Count > 0)
+            {
+                selectedMovie = (MovieBean)lstAllMovies.SelectedItems[0].Tag;
+            }
+            files.comparer = MovieComparer.COMPARE.RATING;
+            refreshMovies(selectedMovie);
+        }
+
+        private void yearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovieBean selectedMovie = null;
+            if (lstAllMovies.SelectedItems.Count > 0)
+            {
+                selectedMovie = (MovieBean)lstAllMovies.SelectedItems[0].Tag;
+            }
+            files.comparer = MovieComparer.COMPARE.YEAR;
+            refreshMovies(selectedMovie);
+        }
+
+        private void runningTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovieBean selectedMovie = null;
+            if (lstAllMovies.SelectedItems.Count > 0)
+            {
+                selectedMovie = (MovieBean)lstAllMovies.SelectedItems[0].Tag;
+            }
+            files.comparer = MovieComparer.COMPARE.RUNNING_TIME;
+            refreshMovies(selectedMovie);
+        }
+
+        private void recentlyWatchedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovieBean selectedMovie = null;
+            if (lstAllMovies.SelectedItems.Count > 0)
+            {
+                selectedMovie = (MovieBean)lstAllMovies.SelectedItems[0].Tag;
+            }
+            files.comparer = MovieComparer.COMPARE.RECENTLY_WATCHED;
+            refreshMovies(selectedMovie);
+        }
+
+        private void recentlyAddedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovieBean selectedMovie = null;
+            if (lstAllMovies.SelectedItems.Count > 0)
+            {
+                selectedMovie = (MovieBean)lstAllMovies.SelectedItems[0].Tag;
+            }
+            files.comparer = MovieComparer.COMPARE.RECENTLY_ADDED;
+            refreshMovies(selectedMovie);
         }
     }
 
