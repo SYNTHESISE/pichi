@@ -26,6 +26,7 @@ namespace File_Organiser_2
             refreshLanguages();
             refreshActors();
             refreshDirectors();
+            refreshMovieScans();
 
             //put them in the right place
             resetPositions();
@@ -45,6 +46,7 @@ namespace File_Organiser_2
             pnlLanguages.Location = panelLocation;
             pnlActors.Location = panelLocation;
             pnlDirectors.Location = panelLocation;
+            pnlMovieScans.Location = panelLocation;
         }
 
         private void setCategory(String field)
@@ -69,6 +71,9 @@ namespace File_Organiser_2
                     break;
                 case "lblDirectors":
                     pnlDirectors.BringToFront();
+                    break;
+                case "lblMovieScans":
+                    pnlMovieScans.BringToFront();
                     break;
             }
         }
@@ -124,6 +129,15 @@ namespace File_Organiser_2
             foreach(String item in frmMain.files.directors)
             {
                 lstDirectors.Items.Add(item);
+            }
+        }
+
+        private void refreshMovieScans()
+        {
+            lstMovieScans.Items.Clear();
+            foreach(String item in frmMain.files.movieScans)
+            {
+                lstMovieScans.Items.Add(item);
             }
         }
 
@@ -317,8 +331,35 @@ namespace File_Organiser_2
             txtDirectorAdd.Text = "";
 
         }
-#endregion
-        
+
+
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            searchListBox(lstMovieScans, txtMovieScansSearch.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (lstMovieScans.SelectedItems.Count == 1 && MessageBox.Show("Are you sure you want to delete " + lstMovieScans.SelectedItem, "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                frmMain.files.movieScans.Remove(lstMovieScans.SelectedItem.ToString());
+            }
+            refreshMovieScans();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (!frmMain.files.movieScans.Contains(txtMovieScansAdd.Text, StringComparer.OrdinalIgnoreCase))
+            {
+                frmMain.files.movieScans.Add(txtMovieScansAdd.Text);
+                refreshMovieScans();
+            }
+            txtMovieScansAdd.Text = "";
+        }
+
+        #endregion
+
         private void button1_Click(object sender, EventArgs e)
         {
             Close();

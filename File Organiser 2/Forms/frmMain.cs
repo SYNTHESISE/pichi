@@ -1,4 +1,5 @@
-﻿using System;
+﻿using File_Organiser_2.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //TODO:
-//Sorting
 //File Scanning
 //TV Shows
 namespace File_Organiser_2
@@ -31,6 +31,7 @@ namespace File_Organiser_2
         {
             files.movies = new List<MovieBean>();
             loadData();
+            scanForNewMoview();
         }
 
         private bool loadData()
@@ -145,7 +146,7 @@ namespace File_Organiser_2
                 bool importData = false;
                 if(myFiles.Length > 0)
                 {
-                    importData = (DialogResult.Yes == MessageBox.Show("Would you like to import data for these items?", "boobz", MessageBoxButtons.YesNo));
+                    importData = (DialogResult.Yes == MessageBox.Show("Would you like to import data for these items?", "Import data?", MessageBoxButtons.YesNo));
                 }
 
                 Cursor = Cursors.WaitCursor;
@@ -194,7 +195,7 @@ namespace File_Organiser_2
                     movie = movie.merge(TheMovieDB.getMovieBean(movie));
                 }
                 files.movies.Add(movie);
-
+                files.addMovieScan(Path.GetDirectoryName(filePath));
                 return true;
             }
             return false;
@@ -384,8 +385,56 @@ namespace File_Organiser_2
             files.comparer = MovieComparer.COMPARE.RECENTLY_ADDED;
             refreshMovies(selectedMovie);
         }
+
+
+        private void scanForNewMoview()
+        {
+            BackgroundWorker bgwMovieScans = new BackgroundWorker();
+            bgwMovieScans.DoWork += BgwMovieScans_DoWork;
+            bgwMovieScans.RunWorkerCompleted += BgwMovieScans_RunWorkerCompleted;
+            bgwMovieScans.RunWorkerAsync();
+        }
+
+        private void BgwMovieScans_DoWork(object sender, DoWorkEventArgs e)
+        {
+            System.Threading.Thread.Sleep(1000);
+            List<String> newFiles = new List<string>();
+            foreach(String directory in files.movieScans)
+            {
+                foreach(String file in Directory.GetFiles(directory))
+                {
+                    if (GlobalFunctions.isVideoFile(file))
+                    {
+                        Boolean isNewMovie = true;
+                        foreach(MovieBean movie in files.movies)
+                        {
+                            if(movie.fullPath == file)
+                            {
+                                isNewMovie = false;
+                                break;
+                            }
+                        }
+
+                        if (isNewMovie)
+                        {
+                            newFiles.Add(file);
+                        }
+                    }
+                }
+            }
+            if(newFiles.Count > 0)
+            {
+                bool importData = false;
+                foreach(String movie in frmMovieScanImporter.getFilesToImport(newFiles, out importData))
+                {
+                    importMovie(movie, importData);
+                }
+            }
+        }
+        
+        private void BgwMovieScans_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            refreshMovies(null);
+        }
     }
-
-
-    
 }

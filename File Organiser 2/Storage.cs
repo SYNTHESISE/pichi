@@ -18,6 +18,7 @@ namespace File_Organiser_2
         public List<String> languages = new List<string>();
         public List<String> actors = new List<string>();
         public List<String> directors = new List<string>();
+        public List<String> movieScans = new List<string>();
 
         public MovieComparer.COMPARE comparer;
         public int getUniqueID;
@@ -56,6 +57,7 @@ namespace File_Organiser_2
             languages = newObject.languages;
             actors = newObject.actors;
             directors = newObject.directors;
+            movieScans = newObject.movieScans;
 
             comparer = newObject.comparer;
             getUniqueID = newObject.getUniqueID;
@@ -90,7 +92,15 @@ namespace File_Organiser_2
             MessageBox.Show(ex.ToString());
         }
     }
-#endregion
+
+        internal void addMovieScan(string directory)
+        {
+            if (!movieScans.Contains(directory))
+            {
+                movieScans.Add(directory);
+            }
+        }
+        #endregion
 
     }
 }

@@ -35,10 +35,10 @@
             this.txtCollectionssAdd = new System.Windows.Forms.TextBox();
             this.btnCollectionsAdd = new System.Windows.Forms.Button();
             this.pnlCollections = new System.Windows.Forms.Panel();
+            this.btnCollectionsDelete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtColleactionsSearch = new System.Windows.Forms.TextBox();
-            this.btnCollectionsDelete = new System.Windows.Forms.Button();
             this.pnlGenres = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -84,6 +84,16 @@
             this.lstDirectors = new System.Windows.Forms.ListBox();
             this.txtDirectorAdd = new System.Windows.Forms.TextBox();
             this.btnDirectorAdd = new System.Windows.Forms.Button();
+            this.pnlMovieScans = new System.Windows.Forms.Panel();
+            this.btnMovieScansDelete = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.lblFileScanning = new System.Windows.Forms.Label();
+            this.txtMovieScansSearch = new System.Windows.Forms.TextBox();
+            this.lstMovieScans = new System.Windows.Forms.ListBox();
+            this.txtMovieScansAdd = new System.Windows.Forms.TextBox();
+            this.btnMovieScansAdd = new System.Windows.Forms.Button();
+            this.lblMovieScans = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlCollections.SuspendLayout();
@@ -92,11 +102,13 @@
             this.pnlLanguages.SuspendLayout();
             this.pnlActors.SuspendLayout();
             this.pnlDirectors.SuspendLayout();
+            this.pnlMovieScans.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel1.Controls.Add(this.lblMovieScans);
             this.panel1.Controls.Add(this.lblDirectors);
             this.panel1.Controls.Add(this.lblActors);
             this.panel1.Controls.Add(this.lblLanguages);
@@ -221,7 +233,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(228, 423);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(2151, 40);
+            this.panel2.Size = new System.Drawing.Size(2678, 40);
             this.panel2.TabIndex = 4;
             // 
             // txtCollectionssAdd
@@ -258,6 +270,19 @@
             this.pnlCollections.Size = new System.Drawing.Size(344, 417);
             this.pnlCollections.TabIndex = 13;
             // 
+            // btnCollectionsDelete
+            // 
+            this.btnCollectionsDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCollectionsDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnCollectionsDelete.ForeColor = System.Drawing.Color.White;
+            this.btnCollectionsDelete.Location = new System.Drawing.Point(251, 55);
+            this.btnCollectionsDelete.Name = "btnCollectionsDelete";
+            this.btnCollectionsDelete.Size = new System.Drawing.Size(74, 23);
+            this.btnCollectionsDelete.TabIndex = 15;
+            this.btnCollectionsDelete.Text = "delete";
+            this.btnCollectionsDelete.UseVisualStyleBackColor = true;
+            this.btnCollectionsDelete.Click += new System.EventHandler(this.btnCollectionsDelete_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -289,19 +314,6 @@
             this.txtColleactionsSearch.Size = new System.Drawing.Size(175, 20);
             this.txtColleactionsSearch.TabIndex = 13;
             this.txtColleactionsSearch.TextChanged += new System.EventHandler(this.txtColleactionsSearch_TextChanged);
-            // 
-            // btnCollectionsDelete
-            // 
-            this.btnCollectionsDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCollectionsDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnCollectionsDelete.ForeColor = System.Drawing.Color.White;
-            this.btnCollectionsDelete.Location = new System.Drawing.Point(251, 55);
-            this.btnCollectionsDelete.Name = "btnCollectionsDelete";
-            this.btnCollectionsDelete.Size = new System.Drawing.Size(74, 23);
-            this.btnCollectionsDelete.TabIndex = 15;
-            this.btnCollectionsDelete.Text = "delete";
-            this.btnCollectionsDelete.UseVisualStyleBackColor = true;
-            this.btnCollectionsDelete.Click += new System.EventHandler(this.btnCollectionsDelete_Click);
             // 
             // pnlGenres
             // 
@@ -756,7 +768,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(250, 9);
+            this.label17.Location = new System.Drawing.Point(224, 9);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(101, 32);
             this.label17.TabIndex = 2;
@@ -798,12 +810,124 @@
             this.btnDirectorAdd.UseVisualStyleBackColor = true;
             this.btnDirectorAdd.Click += new System.EventHandler(this.btnDirectorAdd_Click);
             // 
+            // pnlMovieScans
+            // 
+            this.pnlMovieScans.Controls.Add(this.btnMovieScansDelete);
+            this.pnlMovieScans.Controls.Add(this.label18);
+            this.pnlMovieScans.Controls.Add(this.label19);
+            this.pnlMovieScans.Controls.Add(this.lblFileScanning);
+            this.pnlMovieScans.Controls.Add(this.txtMovieScansSearch);
+            this.pnlMovieScans.Controls.Add(this.lstMovieScans);
+            this.pnlMovieScans.Controls.Add(this.txtMovieScansAdd);
+            this.pnlMovieScans.Controls.Add(this.btnMovieScansAdd);
+            this.pnlMovieScans.Location = new System.Drawing.Point(2341, 0);
+            this.pnlMovieScans.Name = "pnlMovieScans";
+            this.pnlMovieScans.Size = new System.Drawing.Size(344, 417);
+            this.pnlMovieScans.TabIndex = 21;
+            // 
+            // btnMovieScansDelete
+            // 
+            this.btnMovieScansDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMovieScansDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnMovieScansDelete.ForeColor = System.Drawing.Color.White;
+            this.btnMovieScansDelete.Location = new System.Drawing.Point(251, 55);
+            this.btnMovieScansDelete.Name = "btnMovieScansDelete";
+            this.btnMovieScansDelete.Size = new System.Drawing.Size(74, 23);
+            this.btnMovieScansDelete.TabIndex = 15;
+            this.btnMovieScansDelete.Text = "delete";
+            this.btnMovieScansDelete.UseVisualStyleBackColor = true;
+            this.btnMovieScansDelete.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(15, 383);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(99, 21);
+            this.label18.TabIndex = 14;
+            this.label18.Text = "add directory";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Location = new System.Drawing.Point(17, 53);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 21);
+            this.label19.TabIndex = 6;
+            this.label19.Text = "search";
+            // 
+            // lblFileScanning
+            // 
+            this.lblFileScanning.AutoSize = true;
+            this.lblFileScanning.Font = new System.Drawing.Font("Segoe UI Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileScanning.ForeColor = System.Drawing.Color.White;
+            this.lblFileScanning.Location = new System.Drawing.Point(188, 9);
+            this.lblFileScanning.Name = "lblFileScanning";
+            this.lblFileScanning.Size = new System.Drawing.Size(137, 32);
+            this.lblFileScanning.TabIndex = 2;
+            this.lblFileScanning.Text = "movie scans";
+            // 
+            // txtMovieScansSearch
+            // 
+            this.txtMovieScansSearch.Location = new System.Drawing.Point(70, 56);
+            this.txtMovieScansSearch.Name = "txtMovieScansSearch";
+            this.txtMovieScansSearch.Size = new System.Drawing.Size(175, 20);
+            this.txtMovieScansSearch.TabIndex = 13;
+            this.txtMovieScansSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // lstMovieScans
+            // 
+            this.lstMovieScans.FormattingEnabled = true;
+            this.lstMovieScans.Location = new System.Drawing.Point(15, 79);
+            this.lstMovieScans.Name = "lstMovieScans";
+            this.lstMovieScans.Size = new System.Drawing.Size(310, 303);
+            this.lstMovieScans.Sorted = true;
+            this.lstMovieScans.TabIndex = 1;
+            // 
+            // txtMovieScansAdd
+            // 
+            this.txtMovieScansAdd.Location = new System.Drawing.Point(112, 386);
+            this.txtMovieScansAdd.Name = "txtMovieScansAdd";
+            this.txtMovieScansAdd.Size = new System.Drawing.Size(151, 20);
+            this.txtMovieScansAdd.TabIndex = 10;
+            // 
+            // btnMovieScansAdd
+            // 
+            this.btnMovieScansAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMovieScansAdd.ForeColor = System.Drawing.Color.White;
+            this.btnMovieScansAdd.Location = new System.Drawing.Point(269, 384);
+            this.btnMovieScansAdd.Name = "btnMovieScansAdd";
+            this.btnMovieScansAdd.Size = new System.Drawing.Size(56, 23);
+            this.btnMovieScansAdd.TabIndex = 11;
+            this.btnMovieScansAdd.Text = "add";
+            this.btnMovieScansAdd.UseVisualStyleBackColor = true;
+            this.btnMovieScansAdd.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // lblMovieScans
+            // 
+            this.lblMovieScans.AutoSize = true;
+            this.lblMovieScans.Location = new System.Drawing.Point(12, 199);
+            this.lblMovieScans.Name = "lblMovieScans";
+            this.lblMovieScans.Size = new System.Drawing.Size(119, 30);
+            this.lblMovieScans.TabIndex = 6;
+            this.lblMovieScans.Text = "movie scans";
+            this.lblMovieScans.Click += new System.EventHandler(this.lblDirectors_Click);
+            this.lblMovieScans.MouseEnter += new System.EventHandler(this.lblDirectors_MouseEnter);
+            this.lblMovieScans.MouseLeave += new System.EventHandler(this.lblDirectors_MouseLeave);
+            // 
             // frmManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(2379, 463);
+            this.ClientSize = new System.Drawing.Size(2906, 463);
+            this.Controls.Add(this.pnlMovieScans);
             this.Controls.Add(this.pnlDirectors);
             this.Controls.Add(this.pnlActors);
             this.Controls.Add(this.pnlLanguages);
@@ -830,6 +954,8 @@
             this.pnlActors.PerformLayout();
             this.pnlDirectors.ResumeLayout(false);
             this.pnlDirectors.PerformLayout();
+            this.pnlMovieScans.ResumeLayout(false);
+            this.pnlMovieScans.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -899,5 +1025,15 @@
         private System.Windows.Forms.ListBox lstDirectors;
         private System.Windows.Forms.TextBox txtDirectorAdd;
         private System.Windows.Forms.Button btnDirectorAdd;
+        private System.Windows.Forms.Label lblMovieScans;
+        private System.Windows.Forms.Panel pnlMovieScans;
+        private System.Windows.Forms.Button btnMovieScansDelete;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblFileScanning;
+        private System.Windows.Forms.TextBox txtMovieScansSearch;
+        private System.Windows.Forms.ListBox lstMovieScans;
+        private System.Windows.Forms.TextBox txtMovieScansAdd;
+        private System.Windows.Forms.Button btnMovieScansAdd;
     }
 }
