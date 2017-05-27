@@ -28,9 +28,18 @@ namespace File_Organiser_2.Forms
             importer.ShowDialog();
 
             List<String> returnList = new List<String>();
-            foreach(String listItem in importer.lstMovies.CheckedItems)
+            int i = 0;
+            foreach(String listItem in importer.lstMovies.Items)
             {
-                returnList.Add(listItem);
+                if (importer.lstMovies.GetItemChecked(i))
+                {
+                    returnList.Add(listItem);
+                }
+                else
+                {
+                    frmMain.files.ignoredFiles.Add(listItem);
+                }
+                i++;
             }
             importData = importer.chkImportData.Checked;
             return returnList;

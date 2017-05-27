@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //TODO:
-//File Scanning
 //TV Shows
 namespace File_Organiser_2
 {
@@ -415,7 +414,7 @@ namespace File_Organiser_2
                             }
                         }
 
-                        if (isNewMovie)
+                        if (isNewMovie && !files.ignoredFiles.Contains(file))
                         {
                             newFiles.Add(file);
                         }

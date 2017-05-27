@@ -19,6 +19,7 @@ namespace File_Organiser_2
         public List<String> actors = new List<string>();
         public List<String> directors = new List<string>();
         public List<String> movieScans = new List<string>();
+        public List<String> ignoredFiles = new List<string>();
 
         public MovieComparer.COMPARE comparer;
         public int getUniqueID;
@@ -58,6 +59,7 @@ namespace File_Organiser_2
             actors = newObject.actors;
             directors = newObject.directors;
             movieScans = newObject.movieScans;
+            ignoredFiles = newObject.ignoredFiles;
 
             comparer = newObject.comparer;
             getUniqueID = newObject.getUniqueID;
